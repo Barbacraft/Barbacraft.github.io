@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+
+const receitas = await getCollection('receitas');
+---
+<BaseLayout titulo="Receitas — Little Chef">
+  <main class="lista-receitas">
+    <h1>Receitas</h1>
+    <ul class="grid-receitas">
+      {receitas.map((receita) => (
+        <li>
+          <a href={`/receitas/${receita.id}`}>
+            <img src={receita.data.imagem} alt={receita.data.titulo} width="800" height="600" loading="lazy" />
+            <h2>{receita.data.titulo}</h2>
+            <p>{receita.data.descricao}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </main>
+</BaseLayout>

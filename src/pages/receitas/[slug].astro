@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+
+export async function getStaticPaths() {
+  const receitas = await getCollection('receitas');
+  return receitas.map((receita) => ({
+    params: { slug: receita.id },
+    props: { receita },
+  }));
+}
+
+const { receita } = Astro.props;
+const { Content } = await render(receita);
+---
+<BaseLayout titulo={`${receita.data.titulo} — Little Chef`}>
+  <main class="receita">
+    <h1>{receita.data.titulo}</h1>
+    <img src={receita.data.imagem} alt={receita.data.titulo} width="800" height="600" loading="lazy"/>
+    <p>{receita.data.descricao}</p>
+
+    <section class="ingredientes">
+      <h2>Ingredientes</h2>
+      {receita.data.ingredientes.map((grupo) => (
+        <div>
+          {grupo.grupo && <h3>{grupo.grupo}</h3>}
+          <ul>
+            {grupo.itens.map((item) => <li>{item.quantidade} de {item.nome}</li>)}
+          </ul>
+        </div>
+      ))}
+    </section>
+
+    <section class="passos">
+      <h2>Modo de preparo</h2>
+      <ol>
+        {receita.data.passos.map((passo) => <li>{passo}</li>)}
+      </ol>
+    </section>
+
+    <article class="historia">
+      <Content />
+    </article>
+  </main>
+</BaseLayout>

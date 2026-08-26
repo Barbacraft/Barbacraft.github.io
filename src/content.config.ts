@@ -18,7 +18,7 @@ const receitas = defineCollection({
     dificuldade: z.enum(['Fácil', 'Médio', 'Difícil']),
     video: z.string().url(),
     serieVideo: z.string().optional(),
-    imagem: image(),
+    imagem: z.string().url(),
     ingredientes: z.array(z.object({
       grupo: z.string().optional(),
       itens: z.array(z.object({

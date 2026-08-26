@@ -10,7 +10,7 @@ tempoTotal: 320
 dificuldade: "Fácil"
 video: "https://instagram.com/SEU-LINK-AQUI"
 serieVideo: "Doces de Casa"
-imagem: "./pudim.jpg"
+imagem: "https://i.blogs.es/0f35c7/puding-roscon/450_1000.jpg"
 dica:
   - "Se aparecerem bolhas de ar na superfície ao bater a mistura, deixe descansar por 5 minutos antes de despejar na forma — o pudim fica mais liso e sem furinhos."
 descricao: "Uma receita clássica, cremosa e à prova de falhas — com a história do doce mais amado da mesa brasileira."
